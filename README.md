@@ -1,5 +1,4 @@
-This is the code for the project for distributed computing.
-please upload the code to the src folder.
+[This code's documentation lives on the grpc.io site.](https://grpc.io/docs/quickstart/python.html)
 
-Wing test edit and commit.
-Test 2
+Generate gRPC Code
+python -m grpc_tools.protoc -I./protos --python_out=. --grpc_python_out=. ./protos/ClientRequest.proto
