@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3cad40b8-95a7-493c-ab42-b021802fbda8" name="Default" comment="Client and Server with the basic function">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/helloworld.iml" afterPath="$PROJECT_DIR$/.idea/helloworld.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BalanceHandler.py" afterPath="$PROJECT_DIR$/BalanceHandler.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Server.py" afterPath="$PROJECT_DIR$/Server.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/balance.json" afterPath="$PROJECT_DIR$/balance.json" />
-    </list>
+    <list default="true" id="3cad40b8-95a7-493c-ab42-b021802fbda8" name="Default" comment="Client and Server with the basic function" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -50,12 +43,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="balance.json" pinned="false" current-in-tab="true">
+      <file leaf-file-name="balance.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/balance.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="57">
-              <caret line="3" column="9" lean-forward="true" selection-start-line="3" selection-start-column="9" selection-end-line="3" selection-end-column="9" />
+            <state relative-caret-position="171">
+              <caret line="9" column="10" lean-forward="true" selection-start-line="9" selection-start-column="10" selection-end-line="9" selection-end-column="10" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="StandbyChkptListener.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/StandbyChkptListener.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="19">
+              <caret line="6" column="26" lean-forward="false" selection-start-line="6" selection-start-column="26" selection-end-line="6" selection-end-column="26" />
+              <folding>
+                <element signature="e#0#16#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -89,6 +94,9 @@
         <option value="$PROJECT_DIR$/test.py" />
         <option value="$PROJECT_DIR$/BalanceHandler.py" />
         <option value="$PROJECT_DIR$/balance.json" />
+        <option value="$PROJECT_DIR$/ServerStandByListener.py" />
+        <option value="$PROJECT_DIR$/ServerStandbyListener.py" />
+        <option value="$PROJECT_DIR$/StandbyChkptListener.py" />
       </list>
     </option>
   </component>
@@ -146,11 +154,6 @@
             <path>
               <item name="COMP5325" type="b2602c69:ProjectViewProjectNode" />
               <item name="COMP5325" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="COMP5325" type="b2602c69:ProjectViewProjectNode" />
-              <item name="COMP5325" type="462c0819:PsiDirectoryNode" />
-              <item name="protos" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -465,9 +468,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/balance.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="3" column="9" lean-forward="true" selection-start-line="3" selection-start-column="9" selection-end-line="3" selection-end-column="9" />
+        <state relative-caret-position="171">
+          <caret line="9" column="10" lean-forward="true" selection-start-line="9" selection-start-column="10" selection-end-line="9" selection-end-column="10" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/StandbyChkptListener.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="6" column="26" lean-forward="false" selection-start-line="6" selection-start-column="26" selection-end-line="6" selection-end-column="26" />
+          <folding>
+            <element signature="e#0#16#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
