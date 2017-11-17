@@ -16,9 +16,7 @@
 
 from concurrent import futures
 import time
-
 import grpc
-
 import ClientRequest_pb2
 import ClientRequest_pb2_grpc
 

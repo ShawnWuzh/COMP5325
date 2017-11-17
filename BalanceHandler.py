@@ -1,14 +1,14 @@
 import json
-import threading
+from threading import Lock
 
 
 class BalanceHandler(object):
-
-    FILE_LOCK = threading.LOCK()
+    FILE_LOCK = Lock()
 
     def __init__(self):
-        self.balance_dict = json.load("balance.json")
         self.acc_id = None
+        with open('./balance.json') as json_data:
+            self.balance_dict = json.load(json_data)
 
     def lookup_balanace(self, key):
         self.acc_id = None
@@ -19,7 +19,7 @@ class BalanceHandler(object):
             return "Account not found"
 
     def deposite(self, amt):
-        with FILE_LOCK:
+        with BalanceHandler.FILE_LOCK:
             if self.acc_id == None:
                 return "Account not found"
             if amt <= 0:
@@ -30,7 +30,7 @@ class BalanceHandler(object):
             return "SUCCESS"
 
     def withdraw(self, amt):
-        with FILE_LOCK:
+        with BalanceHandler.FILE_LOCK:
             if self.acc_id == None:
                 return "Account not found"
             elif amt <= 0:
@@ -44,7 +44,7 @@ class BalanceHandler(object):
                 return "SUCCESS"
 
     def synchronize(self, dict):
-        with FILE_LOCK:
+        with BalanceHandler.FILE_LOCK:
             self.balance_dict = dict
             self.__export()
 
