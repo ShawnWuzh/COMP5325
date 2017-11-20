@@ -22,10 +22,10 @@ import socket
 import grpc
 import ClientRequest_pb2
 import ClientRequest_pb2_grpc
-
 from BalanceHandler import BalanceHandler
 from GlobVar import Globvar
 from StandbyChkptListener import StandbyChkptListener
+from PrimaryChkptHandler import PrimaryChkptHandler
 
 class Greeter(ClientRequest_pb2_grpc.GreeterServicer):
   def __init__(self):
@@ -47,8 +47,6 @@ class Greeter(ClientRequest_pb2_grpc.GreeterServicer):
     if result != "Account not found":
       self.current_balance = result
       # TODO: send to the correct peer server
-      self.sock.sendto(self.balance_handler.serialization(), (self.addr_list["s2"], Globvar.SYNC_PORT))
-      Globvar.ACTION_ID += 1
       return ClientRequest_pb2.ClientResponse(status="SUCCESS", actionId=Globvar.ACTION_ID,
                                               acctId=request.acctId, responseAmt=self.current_balance)
     else:
@@ -65,7 +63,6 @@ class Greeter(ClientRequest_pb2_grpc.GreeterServicer):
     if result == "SUCCESS":
       # TODO: send to the correct peer server
       self.sock.sendto(self.balance_handler.serialization(), (self.addr_list["s2"], Globvar.SYNC_PORT))
-      Globvar.ACTION_ID += 1
 
     self.current_balance = self.balance_handler.lookup_balance(request.acctId)
     return ClientRequest_pb2.ClientResponse(status=result, actionId=Globvar.ACTION_ID,
@@ -81,7 +78,6 @@ class Greeter(ClientRequest_pb2_grpc.GreeterServicer):
     if result == "SUCCESS":
       # TODO: send to the correct peer server
       self.sock.sendto(self.balance_handler.serialization(), (self.addr_list["s2"], Globvar.SYNC_PORT))
-      Globvar.ACTION_ID += 1
 
     self.current_balance = self.balance_handler.lookup_balance(request.acctId)
     return ClientRequest_pb2.ClientResponse(status=result, actionId=Globvar.ACTION_ID,
@@ -91,6 +87,8 @@ class Greeter(ClientRequest_pb2_grpc.GreeterServicer):
 def serve():
   sync_listener = StandbyChkptListener()
   sync_listener.start()
+  sync_hanlder = PrimaryChkptHandler()
+  sync_hanlder.start()
   server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
   ClientRequest_pb2_grpc.add_GreeterServicer_to_server(Greeter(), server)
   server.add_insecure_port('[::]:50051')
@@ -99,7 +97,8 @@ def serve():
     while True:
       time.sleep(Globvar._ONE_DAY_IN_SECONDS)
   except KeyboardInterrupt:
-    #TODO: handle thread stop for listener
+    sync_hanlder.stop()
+    sync_listener.stop()
     server.stop(0)
 
 

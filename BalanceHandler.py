@@ -32,6 +32,7 @@ class BalanceHandler(object):
                 return "Desposite amount must be greater than 0"
             current_amount = self.balance_dict[self.acc_id]
             self.balance_dict[self.acc_id] = current_amount + amt
+            Globvar.ACTION_ID += 1
             self.export_to_file()
             return "SUCCESS"
 
@@ -46,13 +47,16 @@ class BalanceHandler(object):
             else:
                 current_amount = self.balance_dict[self.acc_id]
                 self.balance_dict[self.acc_id] = current_amount - amt
+                Globvar.ACTION_ID += 1
                 self.export_to_file()
                 return "SUCCESS"
 
-    def synchronize(self, dict):
+    def synchronize(self, dict, action_id):
         with BalanceHandler.FILE_LOCK:
-            self.balance_dict = dict
-            self.export_to_file()
+            if action_id > Globvar.ACTION_ID:
+                Globvar.ACTION_ID = action_id
+                self.balance_dict = dict
+                self.export_to_file()
 
     def export_to_file(self):
         with open('balance.json', 'w') as outfile:
