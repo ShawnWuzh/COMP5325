@@ -27,6 +27,7 @@ from GlobVar import Globvar
 from StandbyChkptListener import StandbyChkptListener
 from PrimaryChkptHandler import PrimaryChkptHandler
 import sys
+import random
 
 class Greeter(ClientRequest_pb2_grpc.GreeterServicer):
   def __init__(self, balance_handler):
@@ -107,6 +108,8 @@ def serve():
     while True:
       time.sleep(Globvar._ONE_DAY_IN_SECONDS)
   except:
+    delay = random.randint()
+    time.sleep(delay)
     print("Before Send")
     greeter.Last_Breath();
     print("After Send")
