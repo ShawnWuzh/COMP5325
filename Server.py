@@ -26,6 +26,7 @@ from BalanceHandler import BalanceHandler
 from GlobVar import Globvar
 from StandbyChkptListener import StandbyChkptListener
 from PrimaryChkptHandler import PrimaryChkptHandler
+import sys
 
 class Greeter(ClientRequest_pb2_grpc.GreeterServicer):
   def __init__(self, balance_handler):
@@ -98,17 +99,21 @@ def serve():
   sync_hanlder = PrimaryChkptHandler(balance_handler)
   sync_hanlder.start()
   server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
-  ClientRequest_pb2_grpc.add_GreeterServicer_to_server(Greeter(balance_handler), server)
+  greeter = Greeter(balance_handler)
+  ClientRequest_pb2_grpc.add_GreeterServicer_to_server(greeter, server)
   server.add_insecure_port('[::]:50051')
   server.start()
   try:
     while True:
       time.sleep(Globvar._ONE_DAY_IN_SECONDS)
-  except KeyboardInterrupt:
-    server.Last_Breath();
+  except:
+    print("Before Send")
+    greeter.Last_Breath();
+    print("After Send")
     # sync_hanlder.stop()
     # sync_listener.stop()
     server.stop(0)
+    sys.exit(0)
 
 
 if __name__ == '__main__':

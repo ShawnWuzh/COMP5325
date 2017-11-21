@@ -25,9 +25,11 @@ class StandbyChkptListener(threading.Thread):
       if self._stop_event.is_set():
         break
       data, server = self.sock.recvfrom(4096)
+      print("data received")
       datalist = data.decode("utf-8").split(";")
       json_data = json.loads(datalist[0])
       action_id = int(datalist[1])
+      print("received action id")
       self.handler.synchronize(json_data, action_id)
 
   def stop(self):

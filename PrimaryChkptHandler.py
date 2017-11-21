@@ -22,8 +22,9 @@ class PrimaryChkptHandler(threading.Thread):
     while True:
       if self._stop_event.is_set():
         break
-      self.sock.sendto(self.handler.serialization(), (self.addr_list["s2"], Globvar.SYNC_PORT))
       time.sleep(Globvar.CHECKPOINT_DURATION)
+      self.sock.sendto(self.handler.serialization(), (self.addr_list["s2"], Globvar.SYNC_PORT))
+
 
 
   def stop(self):
