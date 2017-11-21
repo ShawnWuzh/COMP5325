@@ -3,10 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="3cad40b8-95a7-493c-ab42-b021802fbda8" name="Default" comment="Client and Server with the basic function">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BalanceHandler.py" afterPath="$PROJECT_DIR$/BalanceHandler.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PrimaryChkptHandler.py" afterPath="$PROJECT_DIR$/PrimaryChkptHandler.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Server.py" afterPath="$PROJECT_DIR$/Server.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/StandbyChkptListener.py" afterPath="$PROJECT_DIR$/StandbyChkptListener.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GlobVar.py" afterPath="$PROJECT_DIR$/GlobVar.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/serverhost.config" afterPath="$PROJECT_DIR$/serverhost.config" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -16,49 +14,23 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Server.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Server.py">
+    <leaf>
+      <file leaf-file-name="GlobVar.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/GlobVar.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="388">
-              <caret line="81" column="10" lean-forward="true" selection-start-line="81" selection-start-column="10" selection-end-line="81" selection-end-column="10" />
-              <folding>
-                <element signature="e#650#680#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BalanceHandler.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/BalanceHandler.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="95">
-              <caret line="7" column="16" lean-forward="false" selection-start-line="7" selection-start-column="4" selection-end-line="7" selection-end-column="16" />
+            <state relative-caret-position="38">
+              <caret line="2" column="19" lean-forward="true" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="StandbyChkptListener.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/StandbyChkptListener.py">
+      <file leaf-file-name="serverhost.config" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/serverhost.config">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="426">
-              <caret line="34" column="0" lean-forward="true" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#16#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PrimaryChkptHandler.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/PrimaryChkptHandler.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="9" column="36" lean-forward="false" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="36" />
-              <folding>
-                <element signature="e#0#16#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="0">
+              <caret line="0" column="40" lean-forward="false" selection-start-line="0" selection-start-column="40" selection-end-line="0" selection-end-column="40" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -94,12 +66,12 @@
         <option value="$PROJECT_DIR$/ServerStandbyListener.py" />
         <option value="$PROJECT_DIR$/server_config" />
         <option value="$PROJECT_DIR$/PrimaryChkptMonitor.py" />
-        <option value="$PROJECT_DIR$/GlobVar.py" />
-        <option value="$PROJECT_DIR$/serverhost.config" />
         <option value="$PROJECT_DIR$/BalanceHandler.py" />
-        <option value="$PROJECT_DIR$/PrimaryChkptHandler.py" />
         <option value="$PROJECT_DIR$/StandbyChkptListener.py" />
+        <option value="$PROJECT_DIR$/serverhost.config" />
         <option value="$PROJECT_DIR$/Server.py" />
+        <option value="$PROJECT_DIR$/GlobVar.py" />
+        <option value="$PROJECT_DIR$/PrimaryChkptHandler.py" />
       </list>
     </option>
   </component>
@@ -110,8 +82,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="152" />
-    <option name="y" value="13" />
+    <option name="x" value="539" />
+    <option name="y" value="31" />
     <option name="width" value="1308" />
     <option name="height" value="784" />
   </component>
@@ -152,6 +124,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -159,17 +133,10 @@
               <item name="COMP5325" type="b2602c69:ProjectViewProjectNode" />
               <item name="COMP5325" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="COMP5325" type="b2602c69:ProjectViewProjectNode" />
-              <item name="COMP5325" type="462c0819:PsiDirectoryNode" />
-              <item name="protos" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -293,7 +260,7 @@
     <frame x="66" y="-8" width="1308" height="784" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14903846" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1514423" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -373,7 +340,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="103" lean-forward="true" selection-start-line="0" selection-start-column="103" selection-end-line="0" selection-end-column="103" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -391,9 +357,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="190">
           <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#11#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -408,7 +372,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="171">
           <caret line="9" column="10" lean-forward="true" selection-start-line="9" selection-start-column="10" selection-end-line="9" selection-end-column="10" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -416,9 +379,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="57">
           <caret line="6" column="26" lean-forward="false" selection-start-line="6" selection-start-column="26" selection-end-line="6" selection-end-column="26" />
-          <folding>
-            <element signature="e#0#16#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -436,7 +396,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="190">
           <caret line="10" column="8" lean-forward="false" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="8" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -444,9 +403,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="114">
           <caret line="6" column="16" lean-forward="false" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="16" />
-          <folding>
-            <element signature="e#0#11#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -550,35 +507,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/serverhost.config">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="57" lean-forward="false" selection-start-line="0" selection-start-column="57" selection-end-line="0" selection-end-column="57" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GlobVar.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="11" column="27" lean-forward="false" selection-start-line="11" selection-start-column="27" selection-end-line="11" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/balance.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="103" lean-forward="false" selection-start-line="0" selection-start-column="103" selection-end-line="0" selection-end-column="103" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Client.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -586,14 +518,38 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="555">
           <caret line="43" column="15" lean-forward="false" selection-start-line="43" selection-start-column="9" selection-end-line="43" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/StandbyChkptListener.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="426">
+          <caret line="34" column="0" lean-forward="true" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-324">
+          <caret line="30" column="14" lean-forward="false" selection-start-line="30" selection-start-column="14" selection-end-line="30" selection-end-column="14" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Server.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="77" column="30" lean-forward="true" selection-start-line="77" selection-start-column="30" selection-end-line="77" selection-end-column="30" />
+          <folding>
+            <element signature="e#650#680#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/PrimaryChkptHandler.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="9" column="36" lean-forward="false" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="36" />
+        <state relative-caret-position="282">
+          <caret line="22" column="6" lean-forward="false" selection-start-line="22" selection-start-column="6" selection-end-line="22" selection-end-column="6" />
           <folding>
             <element signature="e#0#16#0" expanded="true" />
           </folding>
@@ -602,29 +558,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/BalanceHandler.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="7" column="16" lean-forward="false" selection-start-line="7" selection-start-column="4" selection-end-line="7" selection-end-column="16" />
+        <state relative-caret-position="130">
+          <caret line="55" column="27" lean-forward="false" selection-start-line="55" selection-start-column="27" selection-end-line="55" selection-end-column="27" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/StandbyChkptListener.py">
+    <entry file="file://$PROJECT_DIR$/GlobVar.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="426">
-          <caret line="34" column="0" lean-forward="true" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#16#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="38">
+          <caret line="2" column="19" lean-forward="true" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Server.py">
+    <entry file="file://$PROJECT_DIR$/serverhost.config">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="388">
-          <caret line="81" column="10" lean-forward="true" selection-start-line="81" selection-start-column="10" selection-end-line="81" selection-end-column="10" />
-          <folding>
-            <element signature="e#650#680#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="0">
+          <caret line="0" column="40" lean-forward="false" selection-start-line="0" selection-start-column="40" selection-end-line="0" selection-end-column="40" />
+          <folding />
         </state>
       </provider>
     </entry>
