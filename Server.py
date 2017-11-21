@@ -108,7 +108,7 @@ def serve():
     while True:
       time.sleep(Globvar._ONE_DAY_IN_SECONDS)
   except:
-    delay = random.randint()
+    delay = random.randint(0,10)
     time.sleep(delay)
     print("Before Send")
     greeter.Last_Breath();
