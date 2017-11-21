@@ -40,9 +40,9 @@ class Greeter(ClientRequest_pb2_grpc.GreeterServicer):
 
   def GetBalance(self, request, context):
     print("{0} Server Check Balance".format(Globvar.SERVER_STATUS))
-    if Globvar.SERVER_STATUS != "PRIMARY":
-      return ClientRequest_pb2.ClientResponse(status="REJECT", actionId=Globvar.ACTION_ID,
-                                              acctId=request.acctId, responseAmt=self.current_balance)
+    #if Globvar.SERVER_STATUS != "PRIMARY":
+    #  return ClientRequest_pb2.ClientResponse(status="REJECT", actionId=Globvar.ACTION_ID,
+    #                                          acctId=request.acctId, responseAmt=self.current_balance)
     result = self.balance_handler.lookup_balance(request.acctId)
     if result != "Account not found":
       self.current_balance = result
@@ -55,9 +55,9 @@ class Greeter(ClientRequest_pb2_grpc.GreeterServicer):
 
   def Withdraw(self, request, context):
     print("{0} Server Withdraw".format(Globvar.SERVER_STATUS))
-    if Globvar.SERVER_STATUS != "PRIMARY":
-      return ClientRequest_pb2.ClientResponse(status="REJECT", actionId=Globvar.ACTION_ID,
-                                              acctId=request.acctId, responseAmt=self.current_balance)
+    #if Globvar.SERVER_STATUS != "PRIMARY":
+    #  return ClientRequest_pb2.ClientResponse(status="REJECT", actionId=Globvar.ACTION_ID,
+    #                                          acctId=request.acctId, responseAmt=self.current_balance)
 
     result = self.balance_handler.lookup_balance(request.acctId)
     if result != "Account not found":
@@ -75,9 +75,9 @@ class Greeter(ClientRequest_pb2_grpc.GreeterServicer):
 
   def Deposit(self, request, context):
     print("{0} Server Deposit".format(Globvar.SERVER_STATUS))
-    if Globvar.SERVER_STATUS != "PRIMARY":
-      return ClientRequest_pb2.ClientResponse(status="REJECT", actionId=Globvar.ACTION_ID,
-                                              acctId=request.acctId, responseAmt=self.current_balance)
+    #if Globvar.SERVER_STATUS != "PRIMARY":
+    #  return ClientRequest_pb2.ClientResponse(status="REJECT", actionId=Globvar.ACTION_ID,
+    #                                          acctId=request.acctId, responseAmt=self.current_balance)
     result = self.balance_handler.lookup_balance(request.acctId)
     if result != "Account not found":
       return ClientRequest_pb2.ClientResponse(status=result, actionId=Globvar.ACTION_ID,
@@ -92,6 +92,8 @@ class Greeter(ClientRequest_pb2_grpc.GreeterServicer):
     return ClientRequest_pb2.ClientResponse(status=result, actionId=Globvar.ACTION_ID,
                                               acctId=request.acctId, responseAmt=self.current_balance)
 
+  def Last_Breath(self):
+    self.sock.sendto(self.balance_handler.serialization(), (self.addr_list["s2"], Globvar.SYNC_PORT))
 
 def serve():
   balance_handler = BalanceHandler()
@@ -107,8 +109,9 @@ def serve():
     while True:
       time.sleep(Globvar._ONE_DAY_IN_SECONDS)
   except KeyboardInterrupt:
-    sync_hanlder.stop()
-    sync_listener.stop()
+    server.Last_Breath();
+    # sync_hanlder.stop()
+    # sync_listener.stop()
     server.stop(0)
 
 
