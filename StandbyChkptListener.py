@@ -7,10 +7,10 @@ from GlobVar import Globvar
 
 
 class StandbyChkptListener(threading.Thread):
-  def __init__(self):
+  def __init__(self, balance_handler):
     super(StandbyChkptListener, self).__init__()
     self._stop_event = threading.Event()
-    self.handler = BalanceHandler()
+    self.handler = balance_handler
     self.pause_cond = threading.Condition(threading.Lock())
     self.sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     self.server_address = ('localhost', Globvar.SYNC_PORT)
