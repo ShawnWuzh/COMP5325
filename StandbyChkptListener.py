@@ -9,11 +9,14 @@ from GlobVar import Globvar
 class StandbyChkptListener(threading.Thread):
   def __init__(self, balance_handler):
     super(StandbyChkptListener, self).__init__()
+    self.addr_list = None
     self._stop_event = threading.Event()
     self.handler = balance_handler
     self.pause_cond = threading.Condition(threading.Lock())
     self.sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    self.server_address = ('localhost', Globvar.SYNC_PORT)
+    with open('./serverhost.config') as sever_data:
+      self.addr_list = json.load(sever_data)
+    self.server_address = (self.addr_list['s1'], Globvar.SYNC_PORT)
     print('starting up on %s port %s' % self.server_address)
     self.sock.bind(self.server_address)
 

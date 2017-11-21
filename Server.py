@@ -33,7 +33,6 @@ class Greeter(ClientRequest_pb2_grpc.GreeterServicer):
     self.current_balance = None
     self.addr_list = None
     with open("serverhost.config", 'r') as server_data:
-      # TODO: Get the correct peer server address
       self.addr_list =json.load(server_data)
     self.sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM) # UDP
 
@@ -46,7 +45,6 @@ class Greeter(ClientRequest_pb2_grpc.GreeterServicer):
     result = self.balance_handler.lookup_balance(request.acctId)
     if result != "Account not found":
       self.current_balance = result
-      # TODO: send to the correct peer server
       return ClientRequest_pb2.ClientResponse(status="SUCCESS", actionId=Globvar.ACTION_ID,
                                               acctId=request.acctId, responseAmt=self.current_balance)
     else:
@@ -66,7 +64,6 @@ class Greeter(ClientRequest_pb2_grpc.GreeterServicer):
 
     result = self.balance_handler.withdraw(request.requestAmt)
     if result == "SUCCESS":
-      # TODO: send to the correct peer server
       self.sock.sendto(self.balance_handler.serialization(), (self.addr_list["s2"], Globvar.SYNC_PORT))
 
     self.current_balance = self.balance_handler.lookup_balance(request.acctId)
@@ -85,7 +82,6 @@ class Greeter(ClientRequest_pb2_grpc.GreeterServicer):
 
     result = self.balance_handler.deposit(request.requestAmt)
     if result == "SUCCESS":
-      # TODO: send to the correct peer server
       self.sock.sendto(self.balance_handler.serialization(), (self.addr_list["s2"], Globvar.SYNC_PORT))
 
     self.current_balance = self.balance_handler.lookup_balance(request.acctId)

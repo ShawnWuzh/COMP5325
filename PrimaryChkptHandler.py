@@ -2,6 +2,7 @@ import threading
 import socket
 import sys
 import json
+import time
 from BalanceHandler import BalanceHandler
 from GlobVar import Globvar
 
@@ -9,18 +10,20 @@ from GlobVar import Globvar
 class PrimaryChkptHandler(threading.Thread):
   def __init__(self, balance_handler):
     super(PrimaryChkptHandler, self).__init__()
+    self.addr_list = None
     self._stop_event = threading.Event()
     self.handler = balance_handler
     self.pause_cond = threading.Condition(threading.Lock())
     self.sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    self.server_address = ('localhost', Globvar.SYNC_PORT)
+    with open('./serverhost.config') as sever_data:
+      self.addr_list = json.load(sever_data)
 
   def run(self):
     while True:
       if self._stop_event.is_set():
         break
-      # TODO: send to the correct peer server
-      self.sock.sendto(self.balance_handler.serialization(), (self.addr_list["s2"], Globvar.SYNC_PORT))
+      self.sock.sendto(self.handler.serialization(), (self.addr_list["s2"], Globvar.SYNC_PORT))
+      time.sleep(Globvar.CHECKPOINT_DURATION)
 
 
   def stop(self):

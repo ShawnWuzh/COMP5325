@@ -63,5 +63,5 @@ class BalanceHandler(object):
             json.dump(BalanceHandler.balance_dict, outfile)
 
     def serialization(self):
-        serialized_data = json.dumps(BalanceHandler.balance_dict) + Globvar.ACTION_ID
-        return serialized_data
+        serialized_data = json.dumps(BalanceHandler.balance_dict) + str(Globvar.ACTION_ID)
+        return serialized_data.encode('utf-8')
