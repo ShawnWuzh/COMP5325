@@ -3,4 +3,4 @@ class Globvar:
   SYNC_PORT = 50002
   ACTION_ID = 0
   # in terms of seconds
-  CHECKPOINT_DURATION  = 1
+  CHECKPOINT_DURATION  = 1000

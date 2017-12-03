@@ -60,7 +60,7 @@ class Greeter(ClientRequest_pb2_grpc.GreeterServicer):
                                              acctId=request.acctId, responseAmt=self.current_balance)
 
     result = self.balance_handler.lookup_balance(request.acctId)
-    if result != "Account not found":
+    if result == "Account not found":
       return ClientRequest_pb2.ClientResponse(status=result, actionId=Globvar.ACTION_ID,
                                               acctId=request.acctId, responseAmt=self.current_balance)
 
@@ -78,7 +78,7 @@ class Greeter(ClientRequest_pb2_grpc.GreeterServicer):
      return ClientRequest_pb2.ClientResponse(status="REJECT", actionId=Globvar.ACTION_ID,
                                              acctId=request.acctId, responseAmt=self.current_balance)
     result = self.balance_handler.lookup_balance(request.acctId)
-    if result != "Account not found":
+    if result == "Account not found":
       return ClientRequest_pb2.ClientResponse(status=result, actionId=Globvar.ACTION_ID,
                                               acctId=request.acctId, responseAmt=self.current_balance)
 
