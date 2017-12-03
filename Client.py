@@ -25,21 +25,40 @@ import ClientRequest_pb2
 import ClientRequest_pb2_grpc
 
 def lookup_balance(stub):
-  acct_id = input("Enter your account ID: ")
-  response = stub.GetBalance(ClientRequest_pb2.ClientRequest(acctId=acct_id))
-  print("Current balance: " + str(response.responseAmt)+ "\n\n")
+  while(True):
+    acct_id = input("Enter your account ID: ")
+    response = stub.GetBalance(ClientRequest_pb2.ClientRequest(acctId=acct_id))
+    if response.status == 'SUCCESS':
+      print("Current balance: " + str(response.responseAmt)+ "\n\n")
+      break;
+    elif response.status == 'REJECT':
+      continue
+    else:
+      print(response.status)
 
 def withdrawal(stub):
-  acct_id = input("Enter your account ID: ")
-  amt = input("Enter amount your want to withdraw: ")
-  response = stub.Withdraw(ClientRequest_pb2.ClientRequest(acctId=acct_id,requestAmt=int(amt)))
-  print("Current balance: " + str(response.responseAmt) + "\n\n")
+  while(True):
+    acct_id = input("Enter your account ID: ")
+    amt = input("Enter amount your want to withdraw: ")
+    response = stub.Withdraw(ClientRequest_pb2.ClientRequest(acctId=acct_id,requestAmt=int(amt)))
+    if response.status == 'SUCCESS':
+      print("Current balance: " + str(response.responseAmt) + "\n\n")
+    elif response.status == 'REJECT':
+      continue
+    else:
+      print(response.status)
 
 def deposit(stub):
-  acct_id = input("Enter your account ID: ")
-  amt = input("Enter amount your want to deposite: ")
-  response = stub.Deposit(ClientRequest_pb2.ClientRequest(acctId=acct_id,requestAmt=int(amt)))
-  print("Current balance: " + str(response.responseAmt)+ "\n\n")
+  while(True):
+    acct_id = input("Enter your account ID: ")
+    amt = input("Enter amount your want to deposite: ")
+    response = stub.Deposit(ClientRequest_pb2.ClientRequest(acctId=acct_id,requestAmt=int(amt)))
+    if response.status == 'SUCCESS':
+      print("Current balance: " + str(response.responseAmt)+ "\n\n")
+    elif response.status == 'REJECT':
+      continue
+    else:
+      print(response.status)
 
 def run():
   with open('./serverhost.config') as sever_data:
