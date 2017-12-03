@@ -114,7 +114,7 @@ def run():
       sys.exit()
     time.sleep(3)
     # for windows :
-    os.system('cls')
+    # os.system('cls')
     # for linux:
     os.system('clear')
 
