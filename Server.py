@@ -109,14 +109,14 @@ def serve():
     while True:
       time.sleep(Globvar._ONE_DAY_IN_SECONDS)
   except:
+    print("Before Send")
+    server.stop(0)
     delay = random.randint(0,10)
     time.sleep(delay)
-    print("Before Send")
     greeter.Last_Breath();
+    sync_hanlder.stop()
+    sync_listener.stop()
     print("After Send")
-    # sync_hanlder.stop()
-    # sync_listener.stop()
-    server.stop(0)
     sys.exit(0)
 
 
