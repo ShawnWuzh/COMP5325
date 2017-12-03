@@ -16,7 +16,7 @@
 from __future__ import print_function
 import json
 
-
+from GlobVar import  Globvar
 import grpc
 import sys
 import time
@@ -24,55 +24,79 @@ import os
 import ClientRequest_pb2
 import ClientRequest_pb2_grpc
 
-def lookup_balance(stub):
-  while(True):
-    acct_id = input("Enter your account ID: ")
-    response = stub.GetBalance(ClientRequest_pb2.ClientRequest(acctId=acct_id))
-    if response.status == 'SUCCESS':
-      print("Current balance: " + str(response.responseAmt)+ "\n\n")
-      break;
-    elif response.status == 'REJECT':
-      continue
-    else:
-      print(response.status)
+global_var = Globvar()
+def lookup_balance(stub,acct_id):
+  try:
+    while(True):
+      response = stub.GetBalance(ClientRequest_pb2.ClientRequest(acctId=acct_id,actionId=global_var.ACTION_ID))
+      if response.status == 'SUCCESS':
+        print("Current balance: " + str(response.responseAmt)+ "\n\n")
+        global_var.ACTION_ID = response.actionId
+        break
+      elif response.status == 'REJECT':
+        continue
+      else:
+        print(response.status)
+        break
+    return True
+  except:
+    return False
 
-def withdrawal(stub):
-  while(True):
-    acct_id = input("Enter your account ID: ")
-    amt = input("Enter amount your want to withdraw: ")
-    response = stub.Withdraw(ClientRequest_pb2.ClientRequest(acctId=acct_id,requestAmt=int(amt)))
-    if response.status == 'SUCCESS':
-      print("Current balance: " + str(response.responseAmt) + "\n\n")
-    elif response.status == 'REJECT':
-      continue
-    else:
-      print(response.status)
 
-def deposit(stub):
-  while(True):
-    acct_id = input("Enter your account ID: ")
-    amt = input("Enter amount your want to deposite: ")
-    response = stub.Deposit(ClientRequest_pb2.ClientRequest(acctId=acct_id,requestAmt=int(amt)))
-    if response.status == 'SUCCESS':
-      print("Current balance: " + str(response.responseAmt)+ "\n\n")
-    elif response.status == 'REJECT':
-      continue
-    else:
-      print(response.status)
+
+def withdrawal(stub,acct_id,amt):
+  try:
+    while(True):
+      response = stub.Withdraw(ClientRequest_pb2.ClientRequest(acctId=acct_id,requestAmt=int(amt),actionId=global_var.ACTION_ID))
+      if response.status == 'SUCCESS':
+        print("Current balance: " + str(response.responseAmt) + "\n\n")
+        global_var.ACTION_ID = response.actionId
+        break
+      elif response.status == 'REJECT':
+        continue
+      else:
+        print(response.status)
+        break
+    return True
+  except:
+    return False
+
+
+def deposit(stub,acct_id,amt):
+  try:
+    while(True):
+      response = stub.Deposit(ClientRequest_pb2.ClientRequest(acctId=acct_id,requestAmt=int(amt),actionId=global_var.ACTION_ID))
+      if response.status == 'SUCCESS':
+        print("Current balance: " + str(response.responseAmt)+ "\n\n")
+        global_var.ACTION_ID = response.actionId
+
+        break
+      elif response.status == 'REJECT':
+        print('Reject!')
+        continue
+      else:
+        print(response.status)
+        break
+    return True
+  except:
+    return False
+
 
 def run():
   with open('./serverhost.config') as sever_data:
     addr_list = json.load(sever_data)
   primary = 's1'
+  try:
+    channel = grpc.insecure_channel('{}:50051'.format(addr_list[primary]))
+    stub = ClientRequest_pb2_grpc.GreeterStub(channel)
+  except:
+    if primary == 's1':
+      primary = 's2'
+    else:
+      primary = 's1'
+    channel = grpc.insecure_channel('{}:50051'.format(addr_list[primary]))
+    stub = ClientRequest_pb2_grpc.GreeterStub(channel)
   while (True):
-    try:
-      channel = grpc.insecure_channel('{}:50051'.format(addr_list[primary]))
-      stub = ClientRequest_pb2_grpc.GreeterStub(channel)
-    except:
-      if primary == 's1':
-        primary = 's2'
-      else:
-        primary = 's1'
     print()
     print('Welcome to Distributed Bank!')
     print("------------------------------------------------------")
@@ -84,32 +108,34 @@ def run():
     print("------------------------------------------------------\n")
     op = input("Your choice: ")
     if op == "1":
-      try:
-        lookup_balance(stub)
-      except:
+      acct_id = input("Enter your account ID: ")
+      while(not lookup_balance(stub,acct_id)):
         if primary == 's1':
           primary = 's2'
         else:
           primary = 's1'
-        lookup_balance(stub)
+        channel = grpc.insecure_channel('{}:50051'.format(addr_list[primary]))
+        stub = ClientRequest_pb2_grpc.GreeterStub(channel)
     elif op == "2":
-      try:
-        withdrawal(stub)
-      except:
+      acct_id = input("Enter your account ID: ")
+      amt = input("Enter amount your want to withdraw: ")
+      while(not withdrawal(stub,acct_id,amt)):
         if primary == 's1':
           primary = 's2'
         else:
           primary = 's1'
-          withdrawal(stub)
+        channel = grpc.insecure_channel('{}:50051'.format(addr_list[primary]))
+        stub = ClientRequest_pb2_grpc.GreeterStub(channel)
     elif op == "3":
-      try:
-        deposit(stub)
-      except:
+      acct_id = input("Enter your account ID: ")
+      amt = input("Enter amount your want to deposite: ")
+      while(not deposit(stub,acct_id,amt)):
         if primary == 's1':
           primary = 's2'
         else:
           primary = 's1'
-        deposit(stub)
+        channel = grpc.insecure_channel('{}:50051'.format(addr_list[primary]))
+        stub = ClientRequest_pb2_grpc.GreeterStub(channel)
     else:
       sys.exit()
     time.sleep(3)
