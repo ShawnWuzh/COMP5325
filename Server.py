@@ -41,9 +41,9 @@ class Greeter(ClientRequest_pb2_grpc.GreeterServicer):
 
   def GetBalance(self, request, context):
     print("{0} Server Check Balance".format(Globvar.SERVER_STATUS))
-    #if Globvar.SERVER_STATUS != "PRIMARY":
-    #  return ClientRequest_pb2.ClientResponse(status="REJECT", actionId=Globvar.ACTION_ID,
-    #                                          acctId=request.acctId, responseAmt=self.current_balance)
+    if request.actionId > Globvar.ACTION_ID:
+     return ClientRequest_pb2.ClientResponse(status="REJECT", actionId=Globvar.ACTION_ID,
+                                             acctId=request.acctId, responseAmt=self.current_balance)
     result = self.balance_handler.lookup_balance(request.acctId)
     if result != "Account not found":
       self.current_balance = result
@@ -55,9 +55,9 @@ class Greeter(ClientRequest_pb2_grpc.GreeterServicer):
 
   def Withdraw(self, request, context):
     print("{0} Server Withdraw".format(Globvar.SERVER_STATUS))
-    #if Globvar.SERVER_STATUS != "PRIMARY":
-    #  return ClientRequest_pb2.ClientResponse(status="REJECT", actionId=Globvar.ACTION_ID,
-    #                                          acctId=request.acctId, responseAmt=self.current_balance)
+    if request.actionId > Globvar.ACTION_ID:
+     return ClientRequest_pb2.ClientResponse(status="REJECT", actionId=Globvar.ACTION_ID,
+                                             acctId=request.acctId, responseAmt=self.current_balance)
 
     result = self.balance_handler.lookup_balance(request.acctId)
     if result != "Account not found":
@@ -74,9 +74,9 @@ class Greeter(ClientRequest_pb2_grpc.GreeterServicer):
 
   def Deposit(self, request, context):
     print("{0} Server Deposit".format(Globvar.SERVER_STATUS))
-    #if Globvar.SERVER_STATUS != "PRIMARY":
-    #  return ClientRequest_pb2.ClientResponse(status="REJECT", actionId=Globvar.ACTION_ID,
-    #                                          acctId=request.acctId, responseAmt=self.current_balance)
+    if request.actionId > Globvar.ACTION_ID:
+     return ClientRequest_pb2.ClientResponse(status="REJECT", actionId=Globvar.ACTION_ID,
+                                             acctId=request.acctId, responseAmt=self.current_balance)
     result = self.balance_handler.lookup_balance(request.acctId)
     if result != "Account not found":
       return ClientRequest_pb2.ClientResponse(status=result, actionId=Globvar.ACTION_ID,
