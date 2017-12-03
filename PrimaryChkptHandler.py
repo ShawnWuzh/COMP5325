@@ -20,15 +20,22 @@ class PrimaryChkptHandler(threading.Thread):
 
   def run(self):
     while True:
-      if self._stop_event.is_set():
-        break
-      time.sleep(Globvar.CHECKPOINT_DURATION)
-      self.sock.sendto(self.handler.serialization(), (self.addr_list["s2"], Globvar.SYNC_PORT))
-
+      try:
+        if self._stop_event.is_set():
+          break
+        time.sleep(Globvar.CHECKPOINT_DURATION)
+        self.sock.sendto(self.handler.serialization(), (self.addr_list["s2"], Globvar.SYNC_PORT))
+      except Exception as e:
+        print("Socket exception")
+        continue
+    print("primary sync socket thread is closed")
 
 
   def stop(self):
+    self.sock.shutdown(socket.SHUT_RDWR)
+    print("Shut down primary sync socket")
     self._stop_event.set()
+    print("Shut down primary sync socket thread")
 
   def stopped(self):
     return self._stop_event.is_set()
